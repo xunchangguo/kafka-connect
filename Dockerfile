@@ -1,8 +1,8 @@
-FROM hub.cfsc.com/tools/connect:1.4
+FROM debezium/connect:1.4
 ENV LD_LIBRARY_PATH=/kafka/instant_client
 USER root
 RUN yum -y install libaio && yum clean all
 USER kafka
-COPY instantclient/* /kafka/instant_client/ 
+ADD instantclient.tar.gz /kafka/instant_client/ 
 COPY ./ojdbc8.jar ./xstreams.jar ./debezium-connector-oracle-1.4.1.Final.jar /kafka/connect/debezium-connector-oracle/
 
